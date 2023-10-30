@@ -108,11 +108,10 @@ mfLogotip.moveDown();
 // Реализовать с помощью класса Circle, который принимает аргументы size (ширина и высота фигуры), color (цвет фигуры). При вызове метода render() из экземпляра класса Circle должен отрисоваться круг с заданными стилями.
 
 
-class Circle extends Logo {
-    constructor(width, height, color, url) {
-    super (url);
-    this.width = width;
-    this.height = height;
+class Circle {
+    constructor(size, color) {
+    this.width = size;
+    this.height = size;
     this.color = color;
   
     }
@@ -125,7 +124,7 @@ class Circle extends Logo {
         document.body.append(div);
     }}    
         
-  const circle = new Circle(100, 100, 'yellow', imgUrl)
+  const circle = new Circle(100, 'yellow')
   
   
   circle.render();
