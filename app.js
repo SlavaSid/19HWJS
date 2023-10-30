@@ -1,106 +1,132 @@
-// class Product {
-//     constructor(name, prise){
-// //this = {}
-// this.name = name;
-// this.prise = prise;
-// this.quantity = 0;
+// Задание 1
+
+// Создать конструктор, который возвращает любой объект из жизни с одним свойством и одним методом.
 
 
-// //return this
-//     }
-
-//     addQuantity(){
-//         this.quantity += 1;  
-//     }
-//     static createDiscount(number) {
-//         return `Скидка ${number}%`
-//     }
-// }
-// console.log(Product.createDiscount(50)); 
-
-
-// const bag = new Product('Сумка 1', 200);
-// console.log(bag);
-// console.log(bag.prise);
-// bag.addQuantity();
-// console.log(bag.quantity);
-
-// const dress = new Product('Платье 1', 350);
-// dress.addQuantity();
-// console.log(`Товар ${dress.name}, цена: ${dress.prise}, количество: ${dress.quantity}`);
-
-// //проверка принадлежности свойства (тетода) экземпляру
-// console.log(bag.hasOwnProperty('prise')); //true
-// console.log(bag.hasOwnProperty('name')); //true
-// console.log(bag.hasOwnProperty('nasdg'));//false
-// console.log(bag.hasOwnProperty('addQuantity'));//false
-
-// //instansof -проверяет принадлежность экземпляра к классу
-
-//  console.log(dress instanceof Product); //true
-//  console.log(dress instanceof Object); //true
-//  console.log(dress instanceof String); //true
-
-
-//  const nums = [34, 56, 8];
-//  console.log(typeof nums); //object
-
-//  console.log(nums instanceof Array); //true
-
-
-//  Object.values(bag); //массив 
-//  //console.log(Product.values(bag)); //в не глобальном с values или другие статические методы - будет ошидка
-
-
-//  // Расширение
-
-//  class Shoes extends Product {
-
-//     constructor(name, prise, type){
-//         super(name, prise);
-//         this.type = type;
-//     }
-//     removeQuantity(){
-//              this.quantity -= 1;  
-//     }
-//  }
-
-// const shoes1 = new Shoes('Сапоги', 677, 'зимние');
-// console.log(shoes1);
-
-// shoes1.addQuantity();
-// shoes1.addQuantity();
-// shoes1.addQuantity();
-// shoes1.addQuantity();
-// shoes1.removeQuantity();
-// console.log(shoes1.quantity);
-
-
-// создать класс для рендиренга прямоугольника
-// он принимает ширину, высоту, цвет
-//внутри приямоугольника появляется его площадь
-
-
-class Rectangle {
-    constructor(width, height, color){
-        this.width = width;
-        this.height = height;
-        this.color = color;
+function Car(brand) {
+    this.brand = brand;
+       
+    this.buying = function(){
+        return `${this.brand} brand car`;
     }
-calcArea(){
-    return this.width * this.height;
 }
-    createTemplate(){
-        return `
-        <div style="width: ${this.width}px; height: ${this.height}px; background: ${this.color}" >
-        ${this.calcArea()}
-        </div>`
-    }
- render(){
-    document.body.innerHTML = this.createTemplate();
- }
 
+const ford = new Car('Ford');
+ford.buying();
+
+
+
+
+
+// Задание 2
+// Создайте класс Calculator, который создаёт объекты с конструктором, который запрашивает два значения при помощи prompt и сохраняет их значение в свойствах объекта, и двумя методами:
+// sum() возвращает сумму введённых свойств.
+// mul() возвращает произведение введённых свойств
+
+
+  class Calculator {
+    constructor(number1, number2){
+    this.number1 = number1;  
+    this.number2 = number2;  
+    }
+
+    sum() {
+      
+    return this.number1 + this.number2
 }
-const rect = new Rectangle(34, 56, 'orange');
-rect.render();
+
+    mul() {
+    return this.number1 * this.number2
+    
+}}
+
+const newNumber = new Calculator(+prompt('Введите первое число'), +prompt('Введите второе число'));
+(newNumber.sum());
+(newNumber.mul());
+
+
+
+
+
+/// Задание 3
+// 1. Реализовать следующее мини-приложение https://gist.github.com/zhekix
+
+class Logo {
+    constructor(url) {
+      this.top = 0;
+      this.left = 0;
+      this.width = 200;
+      this.imgUrl = url;
+      this.html = null;
+    }
+
+  init() {
+    this.html = `<img src="${this.imgUrl}" alt="logo">`;
+    this.render()
+    document.body.style.backgroundColor = 'black';
+  }
+  render() {
+    document.body.innerHTML = this.html;
+    const img = document.querySelector('img');   
+    img.style.position = 'fixed';
+    img.style.top = `${this.top}px`;
+    img.style.left = `${this.left}px`;
+    img.style.width = `${this.width}px`;
+  }
+  moveUp() {
+    this.top -= 20;
+    this.render();
+  }
+  moveDown() {
+    this.top += 20;
+    this.render();
+  }
+  moveLeft() {
+    this.left -= 20;
+    this.render();
+  }
+  moveRight() {
+    this.left += 20;
+    this.render();
+  }
+}
+const imgUrl = 'https://bit.ly/2tcDito';
+const mfLogotip = new Logo(imgUrl);
+console.log(mfLogotip);
+mfLogotip.init();
+mfLogotip.moveRight();
+mfLogotip.moveRight();
+mfLogotip.moveRight();
+mfLogotip.moveRight();
+mfLogotip.moveDown();
+mfLogotip.moveDown();
+mfLogotip.moveDown();
+mfLogotip.moveDown();
+
+// 2. Добавить к приложению желтый круг (пример ЗДЕСЬ)
+
+// Реализовать с помощью класса Circle, который принимает аргументы size (ширина и высота фигуры), color (цвет фигуры). При вызове метода render() из экземпляра класса Circle должен отрисоваться круг с заданными стилями.
+
+
+class Circle extends Logo {
+    constructor(width, height, color, url) {
+    super (url);
+    this.width = width;
+    this.height = height;
+    this.color = color;
+  
+    }
+    render(){
+        const div = document.createElement('div');
+        div.style.width = `${this.width}px`;
+        div.style.height = `${this.height}px`;
+        div.style.backgroundColor = this.color;
+        div.style.borderRadius = `50%`;
+        document.body.append(div);
+    }}    
+        
+  const circle = new Circle(100, 100, 'yellow', imgUrl)
+  
+  
+  circle.render();
 
